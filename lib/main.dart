@@ -13,6 +13,7 @@ class SignUpApp extends StatelessWidget {
         '/welcome': (context) => const WelcomeScreen(),
       },
     );
+  //
   }
 }
 
