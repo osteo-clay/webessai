@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 //@Firebase
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+//@Analytic
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 
 
@@ -10,8 +12,19 @@ import 'firebase_options.dart';
 // Avant : void main() => runApp(const SignUpApp());
 // Aprés :
 void main() async {
+  //@Firebase
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
+  //@Analytic
+  FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
+  await FirebaseAnalytics.instance.logEvent(
+    name: "share_image",
+    parameters: {
+      "Page": "Login",
+      "full_text": "Inscription",
+    },
+  );
   runApp(const SignUpApp());
 }
 
@@ -33,6 +46,7 @@ class SignUpApp extends StatelessWidget {
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen();
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +61,7 @@ class SignUpScreen extends StatelessWidget {
       ),
     );
   }
+
 }
 
 class SignUpForm extends StatefulWidget {
