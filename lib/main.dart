@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
+//@Firebase
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() => runApp(const SignUpApp());
+
+
+
+//@Firebase
+// Avant : void main() => runApp(const SignUpApp());
+// Aprés :
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
+  runApp(const SignUpApp());
+}
 
 class SignUpApp extends StatelessWidget {
   const SignUpApp();
